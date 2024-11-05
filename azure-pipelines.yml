@@ -50,7 +50,7 @@ steps:
       command: 'publish'
       publishWebProjects: false
       projects: '**/Web.csproj'
-      arguments: '--Configuration $(buildConfiguration) --no-restore'
+      arguments: '--configuration $(buildConfiguration) --no-restore'
       modifyOutputPath: false
     displayName: 'publish'
 
