@@ -13,13 +13,12 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-  - 
-- task: DotNetCoreCLI@2
-  inputs:
-    azureSubscription: 'Pay-As-You-Go(1)(5a5ef6cc-ba75-424c-abef-b3332a0ef8c8)'
-    command: 'restore'
-    projects: '**/*.csproj'
-  displayName: 'Restore'
+  - task: DotNetCoreCLI@2
+    inputs:
+      azureSubscription: 'Pay-As-You-Go(1)(5a5ef6cc-ba75-424c-abef-b3332a0ef8c8)'
+      command: 'restore'
+      projects: '**/*.csproj'
+    displayName: 'Restore'
 
   - task: DotNetCoreCLI@2
     inputs:
