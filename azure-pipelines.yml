@@ -14,3 +14,44 @@ variables:
 
 steps:
   - 
+- task: DotNetCoreCLI@2
+  inputs:
+    azureSubscription: 'Pay-As-You-Go(1)(5a5ef6cc-ba75-424c-abef-b3332a0ef8c8)'
+    command: 'restore'
+    projects: '**/*.csproj'
+  displayName: 'Restore'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      azureSubscription: 'Pay-As-You-Go(1)(5a5ef6cc-ba75-424c-abef-b3332a0ef8c8)'
+      command: 'build'
+      projects: '**/*.csproj'
+      arguments: '-Norestore-'
+    displayName: 'build'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      azureSubscription: 'Pay-As-You-Go(1)(5a5ef6cc-ba75-424c-abef-b3332a0ef8c8)'
+      command: 'test'
+      projects: '**/*.csproj'
+      arguments: '-Norestore-'
+    displayName: 'test'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      azureSubscription: 'Pay-As-You-Go(1)(5a5ef6cc-ba75-424c-abef-b3332a0ef8c8)'
+      command: 'pack'
+      packagesToPack: '**/*.csproj'
+      versioningScheme: 'off'
+    displayName: 'package'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      azureSubscription: 'Pay-As-You-Go(1)(5a5ef6cc-ba75-424c-abef-b3332a0ef8c8)'
+      command: 'publish'
+      publishWebProjects: false
+      projects: '**/Web.csproj'
+      arguments: '--Configuration $(buildConfiguration) --no-restore'
+      modifyOutputPath: false
+    displayName: 'publish'
+
